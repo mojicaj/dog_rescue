@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dog Rescue</title>
+</head>
+<body>
+  <h1>Dog Rescue API</h1>
+<h2>API to manage dog records for a dog rescue</h2>
+
+<h3>Action | HTTP Method | Endpoint</h3>
+<p>Create Dog | POST | <code>/api/dog</code></p>
+<p>Get Dog | GET | <code>/api/dog/&lt;Name&gt;</code></p>
+<p>Update Dog | PUT | <code>/api/dog</code></p>
+<p>Remove Dog | DELETE | <code>/api/dog/&lt;Name&gt;</code></p>
+
+<p>The create and update endpoints require a json body payload formatted as follows:</p>
+
+<code>
+{
+  "name": "Spot",
+  "breed": "Beagle",
+  "age": 1,
+	"weight": "30 lbs" ,
+	"condition": "Healthy",
+	"description": "loyal",
+	"status": "ready for adoption",
+	"location": "Bronx, NY",
+	"image_url": ""
+}
+</code>
+</body>
+</html>

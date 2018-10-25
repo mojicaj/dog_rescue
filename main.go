@@ -28,6 +28,7 @@ func init() {
 
 func main() {
 	port := os.Getenv("PORT")
+	addr := ":" + port
 	// open database session
 	session, err := mgo.Dial(dbURL)
 	if err != nil {
@@ -38,7 +39,10 @@ func main() {
 
 	router := httprouter.New()
 
-	// route requests to respective handlers
+	// server index page
+	router.GET("/", index)
+
+	// route api requests to respective handlers
 	router.POST("/api/dog", controllers.CreateDogHandler)
 	router.GET("/api/dog/:name", controllers.GetDogHandler)
 	router.GET("/api/dog", controllers.GetDogHandler)
@@ -46,5 +50,9 @@ func main() {
 	router.DELETE("/api/dog/:name", controllers.RemoveDogHandler)
 
 	log.Println("Server is listening on port ", port)
-	log.Fatal(http.ListenAndServe(port, router))
+	log.Fatal(http.ListenAndServe(addr, router))
+}
+
+func index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	http.ServeFile(w, r, "index.html")
 }
