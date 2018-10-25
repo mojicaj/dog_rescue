@@ -27,6 +27,7 @@ func init() {
 }
 
 func main() {
+	port := os.Getenv("PORT")
 	// open database session
 	session, err := mgo.Dial(dbURL)
 	if err != nil {
@@ -44,6 +45,6 @@ func main() {
 	router.PUT("/api/dog", controllers.UpdateDogHandler)
 	router.DELETE("/api/dog/:name", controllers.RemoveDogHandler)
 
-	log.Println("Server is listening on port 8080")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Println("Server is listening on port ", port)
+	log.Fatal(http.ListenAndServe(port, router))
 }
